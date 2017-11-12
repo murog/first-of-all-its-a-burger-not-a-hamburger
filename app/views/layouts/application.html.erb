@@ -11,7 +11,27 @@
 
   </head>
 
+  <script>
+  localStorage.setItem("laura", "hi");
+  </script>
   <body>
+    <section>
+      <ul>
+      <li><%= params %> </li>
+      <li>
+        <%= cookies.each do |key, value| %>
+        <% end %>
+      </li>
+      <%= session.each do |key, value| %>
+      <li><%= puts "#{key}: #{value}" %> </li>
+      <% end %>
+      <li>
+        <%= JSON %>
+  
+
+      </li>
+    </ul>
+    </section>
     <%= yield %>
   </body>
 </html>
