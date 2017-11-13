@@ -17,22 +17,6 @@
 
  */
 
-.hamburger {
-  background-color: pink;
+.hamburger, .fries {
   padding: 100px;
-}
-
-div {
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
-  text-align: center;
-  background: red;
-  color: white;
-  position: absolute;
-  left: 20px;
-  top: 20px;
-}
-
-body {
 }
