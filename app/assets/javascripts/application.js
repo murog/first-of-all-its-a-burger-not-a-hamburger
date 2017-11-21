@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -19,14 +21,51 @@ $(document).ready(function() {
   $(function() {
     $(".draggable").draggable();
   });
+  const setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
+    for(let i = 0; i < array.length; i++) {
+      $(array[i]).css({'z-index': `${i}`});
+    }
+  };
+  // creates a real array for draggables
+  const dragArray = [];
+  for(let i = 0; i < $('.draggable').length ; i++){
+  // $(".draggable").forEach((dragElement) => {
+      dragElement = $(".draggable")[i];
+      dragArray.push(dragElement);
+      // dragElement.css({'z-index': `${i}`});
+      setZIndexByArrayIndex(dragArray);
+  };
 
-  $(`.draggable`).on('mouseenter', function() {
-    let draggables = $('.draggables');
-    console.log('stuff is happening');
-    for(let i = 0; i < draggables.length; i++) {
-      $(draggables[i]).css({'z-index': "0"});
+
+
+  $(`.draggable`).on('click', function() {
+    // look for it in dragArray
+    const current = this;
+    for(let i = 0; i< dragArray.length; i++ ){
+      if (dragArray[i] === current) {
+        const splicedIt = dragArray.splice(i, 1);
+        dragArray.push(splicedIt[0]);
+        console.log(dragArray);
+        setZIndexByArrayIndex(dragArray)
+      }
     };
-    $(this).css({'z-index': "999"});
+    // pop* it out of the dragArray
+    // push* it back to the end
+    // *has to update all the z-indexes as your popping and pushing
+
+    // let draggables = $('.draggable');
+    // console.log(draggables)
+
+    // console.log('stuff is happening');
+    // $(this).css({'z-index': "999"});
+
+    // const max = draggables.length;
+    // for(let i = 0; i < draggables.length; i++) {
+    //   console.log('hey');
+    //   if (draggables[i] !== this) {
+    //   $(draggables[i]).css({'z-index': `${max-i}`});
+    //   }
+    // };
   });
 });
 
