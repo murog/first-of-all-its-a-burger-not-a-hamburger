@@ -21,7 +21,11 @@ $(document).ready(function() {
   });
 
   $(`.draggable`).on('mouseenter', function() {
+    let draggables = $('.draggables');
     console.log('stuff is happening');
+    for(let i = 0; i < draggables.length; i++) {
+      $(draggables[i]).css({'z-index': "0"});
+    };
     $(this).css({'z-index': "999"});
   });
 });
