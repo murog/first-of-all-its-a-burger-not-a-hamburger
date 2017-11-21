@@ -36,6 +36,7 @@ $(document).ready(function() {
       setZIndexByArrayIndex(dragArray);
   };
 
+  collectPositions();
 
 
   $(`.draggable`).on('click', function() {
@@ -45,10 +46,11 @@ $(document).ready(function() {
       if (dragArray[i] === current) {
         const splicedIt = dragArray.splice(i, 1);
         dragArray.push(splicedIt[0]);
-        console.log(dragArray);
+        // console.log(dragArray);
         setZIndexByArrayIndex(dragArray)
       }
     };
+    collectPositions();
     // pop* it out of the dragArray
     // push* it back to the end
     // *has to update all the z-indexes as your popping and pushing
@@ -71,7 +73,28 @@ $(document).ready(function() {
 
 
 
-
+const collectPositions = function collectPositions(){
+  const mood = $('#mood-container');
+  mood.top = 100;
+  mood.bottom = 500;
+  mood.left = 0;
+  mood.right = 400;
+  const draggables = $('.draggable');
+  const moodItems = [];
+  for(i=0; i< draggables.length; i++) {
+    const item = draggables[i];
+    item.left = item.style.left;
+    const leftEnd = item.left.length -2;
+    item.left = parseFloat(item.left.substring(0, leftEnd));
+    item.top = item.style.top;
+    const topEnd = item.top.length -2;
+    item.top = parseFloat(item.top.substring(0, topEnd));
+    if((item.top <= mood.bottom) && (item.top >= mood.top) && (item.left <= mood.right)) {
+      moodItems.push(draggables[i]);
+    }
+  }
+  console.log(`there are ${moodItems.length} items in the container`);
+}
 
 
 // $(function zIndex() {
