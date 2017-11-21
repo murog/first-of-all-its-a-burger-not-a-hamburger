@@ -15,23 +15,23 @@
   localStorage.setItem("laura", "hi");
   </script>
   <body>
-    <section>
+    <!-- <section>
       <ul>
-      <li><%= params %> </li>
+      <li><%#= params %> </li>
       <li>
-        <%= cookies.each do |key, value| %>
-        <% end %>
+        <%#= cookies.each do |key, value| %>
+        <%# end %>
       </li>
-      <%= session.each do |key, value| %>
-      <li><%= puts "#{key}: #{value}" %> </li>
-      <% end %>
+      <%#= session.each do |key, value| %>
+      <li><%#= puts "#{key}: #{value}" %> </li>
+      <%# end %>
       <li>
-        <%= JSON %>
-  
+
+
 
       </li>
     </ul>
-    </section>
+    </section> -->
     <%= yield %>
   </body>
 </html>
