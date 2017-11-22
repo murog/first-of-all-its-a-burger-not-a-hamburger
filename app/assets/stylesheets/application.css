@@ -18,10 +18,14 @@
  */
 .draggable {
   right: 100px;
+  background-color: orange;
+  position: absolute;
 }
 
 div {
   position: absolute;
+  /*width: inherit;*/
+  /*background-color: orange;*/
 }
 
 #mood-container {
