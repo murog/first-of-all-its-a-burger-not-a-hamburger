@@ -16,11 +16,12 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-// 
-// $(document).ready(function() {
-//   $(function() {
-//     $(".draggable").draggable();
-//   });
+//
+$(document).ready(function() {
+  $(function() {
+    $(".draggable").draggable();
+  });
+_}); //this is fake end
 //   const setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
 //     for(let i = 0; i < array.length; i++) {
 //       $(array[i]).css({'z-index': `${i}`});
