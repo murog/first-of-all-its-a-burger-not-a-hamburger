@@ -44,7 +44,7 @@ $(document).ready(function() {
       if (dragArray[i] === current) {
         const splicedIt = dragArray.splice(i, 1);
         dragArray.push(splicedIt[0]);
-        setZIndexByArrayIndex(dragArray)
+        setZIndexByArrayIndex(dragArray);
       }
     };
     collectPositions();
