@@ -1,0 +1,10 @@
+<% @mood_items.each do |item| %>
+  <% top_coord = item.top_coord.to_f %>
+  <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f}px; left: #{item.left_coord.to_f}px; " %>
+<% end %>
+<section class="mood">
+  <div id="mood-container">
+
+
+  </div>
+</section>

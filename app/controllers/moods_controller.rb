@@ -45,4 +45,9 @@ class MoodsController < ApplicationController
 
     # render :root_path => false, params: response
   end
+  def show
+    @mood = Mood.find(params[:id])
+    @mood_items = @mood.mood_items
+    
+  end
 end
