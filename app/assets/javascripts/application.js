@@ -48,6 +48,35 @@ $(document).ready(function () {
     };
     collectPositions();
   });
+
+  // $('#mood_button').click(function(e) {
+  //   console.log('you clicked the save mood button');
+  //   saveMood();
+  // });
+
+  $('body').on('submit', '#mood_form', function(e) {
+    e.preventDefault();
+    console.log('you clicked the save mood button');
+    const moodItems = collectPositions();
+    const trueData = {items: {}};
+    for(i = 0; i < moodItems.length; i++){
+      trueData['items'][`item${i}`] = {
+        item_name: moodItems[i].alt,
+        left_coord: moodItems[i].left,
+        top_coord: moodItems[i].top
+      };
+    };
+
+    const url  = '/moods';
+    console.log('inside saveMood');
+    const data = {msg: 'wow'};
+    $.ajax({
+      type: "POST",
+      url: '/moods',
+      data: trueData
+    });
+  });
+
 });
 
 var collectPositions = function collectPositions() {
@@ -71,4 +100,45 @@ var collectPositions = function collectPositions() {
     }
   }
   console.log('there are ' + moodItems.length + ' items in the container');
+  console.log(moodItems);
+  return moodItems;
+};
+
+// $('body').on('submit', 'form', function(e) {
+//   e.preventDefault();
+//   moodItems = collectPositions();
+//   const url = $(this).attr('action');
+//   // const formData = $(this).seralize();
+//   const formData = moodItems;
+//
+//   $.post(url, formData, (response) => {
+//     console.log(response);
+//   });
+//
+//
+// });
+//
+// $('body').on('submit', 'form', function(e) {
+//   // saveMood();
+//   console.log('saving mood');
+// });
+
+$('#mood_button').click(function(e) {
+  console.log('you clicked the save mood button');
+});
+
+const saveMood = function saveMood() {
+  const moodItems = collectPositions();
+  const url  = '/moods'
+  console.log('inside saveMood');
+  const data = {msg: 'wow'};
+  $.ajax({
+    type: "POST",
+    url: '/moods',
+    data: data
+  });
+  // $.post(url, {msg: 'wow'}, (response) => {
+  //   console.log(response);
+  //   console.log('did it work');
+  // });
 };
