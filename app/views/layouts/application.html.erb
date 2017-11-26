@@ -16,9 +16,15 @@
   localStorage.setItem("laura", "hi");
   </script>
   <body>
+    <%= params %>
+    <section class="flash">
+    <% flash.each do |name, message| %>
+      <div class="<%= name %>"><%= message %></div>
+    <% end %>
+  </section>
     <!-- <section>
       <ul>
-      <li><%#= params %> </li>
+      <%= params %>
       <li>
         <%#= cookies.each do |key, value| %>
         <%# end %>
