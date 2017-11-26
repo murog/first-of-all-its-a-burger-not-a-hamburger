@@ -4,6 +4,11 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+first_valid_mood:
+  name: first valid mood
+  description: this is under 140 characters
+  
 mood_too_long:
   name: this mood is too long
   description: n most of the world, the iconic 140-character tweet is now officially a thing of the past. Twitter said today that after a global test, 280-character tweets will roll out to users around the world. Longer tweets will now be the standard in every language where Twitter is available save for Chinese, Japanese, and ...n most of the world, the iconic 140-character tweet is now officially a thing of the past. Twitter said today that after a global test, 280-character tweets will roll out to users around the world. Longer tweets will now be the standard in every language where Twitter is available save for Chinese, Japanese, and ...
