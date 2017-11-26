@@ -1,7 +1,8 @@
 <h1>wsup</h1>
+<%= params %>
 
 <% @items.each do |item| %>
-  <%= image_tag item.url, class: 'draggable', alt: item.alt_text %>
+  <%= image_tag item.url, class: 'draggable', alt: item.name %>
 
 <% end %>
 
@@ -9,4 +10,10 @@
   <div id="mood-container">
 
   </div>
+  <form id="mood_form">
+    <button type='submit' id='mood_button' >save ur mood</button>
+  </form>
+  <%#= form_for @mood do |f| %>
+  <%#= f.submit "save ur mood " %>
+  <%# end %>
 </section>
