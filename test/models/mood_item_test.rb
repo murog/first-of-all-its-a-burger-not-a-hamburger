@@ -7,7 +7,7 @@ describe MoodItem do
     mood_item.valid?.must_equal false
     mood_item.mood_id = moods(:first_valid_mood).id
     mood_item.valid?.must_equal false
-    mood_item.item_id = items(:first_burger)
+    mood_item.item_id = items(:first_burger).id
     mood_item.valid?.must_equal false
     mood_item.top_coord = 40
     mood_item.valid?.must_equal false
