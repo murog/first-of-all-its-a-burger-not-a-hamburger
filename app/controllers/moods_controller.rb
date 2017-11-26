@@ -38,8 +38,9 @@ class MoodsController < ApplicationController
     end
 
 
+    redirect_to mood_path(@mood.id)
 
-    redirect_to new_mood_path(:params_1 => response)
+    # redirect_to new_mood_path(:params_1 => response)
 
     # respond_to(:js)
 
@@ -48,6 +49,6 @@ class MoodsController < ApplicationController
   def show
     @mood = Mood.find(params[:id])
     @mood_items = @mood.mood_items
-    
+
   end
 end
