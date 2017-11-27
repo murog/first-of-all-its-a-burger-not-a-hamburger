@@ -63,7 +63,8 @@ $(document).ready(function () {
       trueData['items'][`item${i}`] = {
         item_name: moodItems[i].alt,
         left_coord: moodItems[i].left,
-        top_coord: moodItems[i].top
+        top_coord: moodItems[i].top,
+        z_index: moodItems[i].zStuff
       };
     };
 
@@ -95,7 +96,7 @@ var collectPositions = function collectPositions() {
     item.top = item.style.top;
     var topEnd = item.top.length - 2;
     item.top = parseFloat(item.top.substring(0, topEnd));
-    item.zIndex = item.style.zIndex;
+    item.zStuff = parseFloat(item.style.zIndex);
     if (item.top <= mood.bottom && item.top >= mood.top && item.left <= mood.right) {
       moodItems.push(draggables[i]);
     }
