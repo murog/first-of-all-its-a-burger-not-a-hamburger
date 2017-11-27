@@ -27,13 +27,13 @@ class MoodsController < ApplicationController
       mood_item.item_id = Item.find_by(:name => params['items'][key]['item_name']).id
       mood_item.left_coord = params['items'][key]['left_coord']
       mood_item.top_coord = params['items'][key]['top_coord']
-      mood_item.z_index = 1
+      mood_item.z_index = params['items'][key]['zIndex'].to_i
       mood_item.mood_id = @mood.id
       if mood_item.save
         @mood_items << mood_item
       else
         flash[:result_text] = "some items did not save properly."
-        flash[:messages] = mood_item.errors
+        flash[:messages] = mood_item.errors.values
       end
     end
 
