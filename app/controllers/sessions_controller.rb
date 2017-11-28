@@ -23,6 +23,13 @@ class SessionsController < ApplicationController
     end
   end
 
+  def logout
+    session[:user_id] = nil
+    flash[:status] = :success
+    flash[:result_text] = "Successfully logged out"
+    redirect_to root_path
+  end
+
   def index
     @user = User.find(session[:user_id]) # < recalls the value set in a previous request
   end
