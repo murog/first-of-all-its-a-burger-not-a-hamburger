@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Paperd0llz</title>
+    <title>HamburgerBurger</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,36 +9,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
-
-  <script>
-  localStorage.setItem("laura", "hi");
-  </script>
   <body>
-    <%= params %>
+    <%= yield %>
+    <%# params %>
     <section class="flash">
     <% flash.each do |name, message| %>
       <div class="<%= name %>"><%= message %></div>
     <% end %>
   </section>
-    <!-- <section>
-      <ul>
-      <%= params %>
-      <li>
-        <%#= cookies.each do |key, value| %>
-        <%# end %>
-      </li>
-      <%#= session.each do |key, value| %>
-      <li><%#= puts "#{key}: #{value}" %> </li>
-      <%# end %>
-      <li>
-
-
-
-      </li>
-    </ul>
-    </section> -->
-    <%= yield %>
   </body>
 </html>

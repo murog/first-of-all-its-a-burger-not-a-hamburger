@@ -1,22 +1,21 @@
-
 <section class="mood">
-  <div id="mood-container">
+  <h1><%= @mood.name%></h1>
+  <p><%= @mood.description%></p>
+  <div id="mood-container-show">
     <% @mood_items.each do |item| %>
       <% top_coord = item.top_coord.to_f %>
       <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f - 100}px; left: #{item.left_coord.to_f }px; z-index: #{item.z_index} " %>
     <% end %>
-
-
   </div>
 </section>
 
 <section class="mood" id="second_mood">
-  <div id="mood-container">
+  <h1><%= @second_mood.name%></h1>
+  <p><%= @second_mood.description%></p>
+  <div id="mood-container-show">
     <% @second_mood_items.each do |item| %>
       <% top_coord = item.top_coord.to_f %>
       <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f - 100}px; left: #{item.left_coord.to_f }px; z-index: #{item.z_index} " %>
     <% end %>
-
-
   </div>
 </section>

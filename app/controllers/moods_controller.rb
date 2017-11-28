@@ -2,25 +2,13 @@ class MoodsController < ApplicationController
   def new
   end
   def create
-    # if  params[:moodItems]
-    #   response = params[:moodItems]
-    # else
-    #   response = "nothing to see here"
-    # end
-    # p params
-    #
-    # response = params[:msg]
-    # response = params
     response = ""
-    # i = 0
-    # params['items'].each do |key,value|
-    #   response += "#{i} #{key} + #{value}"
-    #   i += 1
-    # end
+
     response = params['items']['item0']['item_name']
     @mood_items = []
     @mood = Mood.new
-    @mood.name = "mood"
+    @mood.name = params['name']
+    @mood.description = params['description']
     @mood.save
     params['items'].each do |key, value|
       mood_item = MoodItem.new
@@ -36,15 +24,8 @@ class MoodsController < ApplicationController
         flash[:messages] = mood_item.errors.values
       end
     end
-
-
+    
     redirect_to mood_path(@mood.id)
-
-    # redirect_to new_mood_path(:params_1 => response)
-
-    # respond_to(:js)
-
-    # render :root_path => false, params: response
   end
   def show
     second_id = params[:id].to_i - 1
