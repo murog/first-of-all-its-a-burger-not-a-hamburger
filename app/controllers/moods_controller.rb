@@ -47,8 +47,11 @@ class MoodsController < ApplicationController
     # render :root_path => false, params: response
   end
   def show
+    second_id = params[:id].to_i - 1
     @mood = Mood.find(params[:id])
     @mood_items = @mood.mood_items
+    @second_mood = Mood.find(second_id)
+    @second_mood_items = @second_mood.mood_items
 
   end
 end
