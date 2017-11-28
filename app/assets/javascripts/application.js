@@ -49,14 +49,14 @@ $(document).ready(function () {
     collectPositions();
   });
 
-  $('body').on('submit', '#mood_form', function(e) {
+  $('body').on('submit', '#mood_form', function (e) {
     e.preventDefault();
     var moodName = document.getElementById('mood_name').value;
     var moodDescription = document.getElementById('mood_description').value;
-    const moodItems = collectPositions();
-    const trueData = {items: {}, name: moodName, description: moodDescription};
-    for(i = 0; i < moodItems.length; i++){
-      trueData['items'][`item${i}`] = {
+    var moodItems = collectPositions();
+    var trueData = { items: {}, name: moodName, description: moodDescription };
+    for (i = 0; i < moodItems.length; i++) {
+      trueData['items']['item' + i] = {
         item_name: moodItems[i].alt,
         left_coord: moodItems[i].left,
         top_coord: moodItems[i].top,
@@ -64,16 +64,15 @@ $(document).ready(function () {
       };
     };
 
-    const url  = '/moods';
+    var url = '/moods';
     console.log('inside saveMood');
-    const data = {msg: 'wow'};
+    var data = { msg: 'wow' };
     $.ajax({
       type: "POST",
       url: '/moods',
       data: trueData
     });
   });
-
 });
 
 var collectPositions = function collectPositions() {
@@ -102,15 +101,15 @@ var collectPositions = function collectPositions() {
   return moodItems;
 };
 
-$('#mood_button').click(function(e) {
+$('#mood_button').click(function (e) {
   console.log('you clicked the save mood button');
 });
 
-const saveMood = function saveMood() {
-  const moodItems = collectPositions();
-  const url  = '/moods'
+var saveMood = function saveMood() {
+  var moodItems = collectPositions();
+  var url = '/moods';
   console.log('inside saveMood');
-  const data = {msg: 'wow'};
+  var data = { msg: 'wow' };
   $.ajax({
     type: "POST",
     url: '/moods',
