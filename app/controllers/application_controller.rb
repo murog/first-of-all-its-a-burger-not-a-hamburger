@@ -4,14 +4,14 @@ class ApplicationController < ActionController::Base
 
   def index
     @mood = Mood.new
-    generate_items(4)
+    generate_items(5)
 
 
   end
   private
   def generate_items(num)
-    all_items = Item.all
-    all_items.shuffle
+    all_items = Item.all.shuffle
+    # all_items.shuffle!
     @items = []
     num.times do |i|
       return if all_items[i].nil?
