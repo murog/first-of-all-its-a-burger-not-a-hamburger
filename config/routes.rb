@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :moods
   root 'application#index'
   get "/auth/:provider/callback", to: "sessions#create"
-
+  post '/logout', to: 'sessions#logout', as: 'logout'
   # match '/moods' => 'moods#create', :via => :post
 
 end
