@@ -13,6 +13,11 @@
   <body>
     <%= yield %>
     <%# params %>
+
+    <div class="login">
+      <%= link_to "Log In", "/auth/github"%>
+    </div>
+
     <section class="flash">
     <% flash.each do |name, message| %>
       <div class="<%= name %>"><%= message %></div>
