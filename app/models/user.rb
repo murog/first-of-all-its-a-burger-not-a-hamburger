@@ -3,6 +3,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :uid, presence: true
   validates :provider, presence: true
+  has_many :moods
 
   def self.from_auth_hash(provider, auth_hash)
     user = new
@@ -13,5 +14,5 @@ class User < ApplicationRecord
 
     return user
   end
-  
+
 end
