@@ -1,18 +1,17 @@
-<h1>foaiahnab</h1>
+  <% @items.each do |item| %>
+    <%= image_tag item.url, class: 'draggable', alt: item.name %>
+  <% end %>
 
-<% @items.each do |item| %>
-  <%= image_tag item.url, class: 'draggable', alt: item.name %>
-<% end %>
-
-<section class="mood">
+<section>
   <div id="mood-container">
   </div>
 </section>
 
-<section>
+<section class="forms">
   <form id="mood_form">
-    <input type='text' id='mood_name' placeholder='name'/>
-    <input type='text' id='mood_description' placeholder='description'/>
-    <button type='submit' id='mood_button' >save ur mood</button>
+    <h5>Save ur mood</h5>
+    <input type='text' id='mood_name' placeholder='Title'/>
+    <input type='text' id='mood_description' placeholder='Description'/>
+    <button type='submit' id='mood_button' class='button' >save</button>
   </form>
 </section>

@@ -3,26 +3,36 @@
   <head>
     <title>HamburgerBurger</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <header>
+      <h1><%= link_to 'Paperburgerz', root_path %></h1>
+      <nav class="login">
+        <%= link_to "Log In", "/auth/github"%>
+        <%= link_to "Log Out", logout_path, method: :post%>
+      </nav>
+    </header>
+
+    <main>
+      <!-- <section class="flash">
+      <% flash.each do |name, message| %>
+        <div class="<%= name %>"><%= message %></div>
+      <% end %>
+    </section> -->
     <%= yield %>
     <%# params %>
+    </main>
 
-    <div class="login">
-      <%= link_to "Log In", "/auth/github"%>
-      <%= link_to "Log Out", logout_path, method: :post%>
-    </div>
-
-    <section class="flash">
-    <% flash.each do |name, message| %>
-      <div class="<%= name %>"><%= message %></div>
-    <% end %>
-  </section>
+    <footer>
+      <p>
+        ©2017, Foaiahnab™
+      </p>
+    </footer>
   </body>
 </html>
