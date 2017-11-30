@@ -17,9 +17,14 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function () {
+var ready = function ready() {
+// $(document).ready(function () {
+  $(document).empty();
+  console.log('im ready');
   $(function () {
     $(".draggable").draggable();
+    console.log('im next to draggable');
+    console.log($('.draggable'));
   });
   var setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
     for (var _i = 0; _i < array.length; _i++) {
@@ -73,7 +78,7 @@ $(document).ready(function () {
       data: trueData
     });
   });
-});
+};
 
 var collectPositions = function collectPositions() {
   var mood = $('#mood-container');
@@ -116,3 +121,5 @@ var saveMood = function saveMood() {
     data: data
   });
 };
+
+$(document).on('turbolinks:load', ready);

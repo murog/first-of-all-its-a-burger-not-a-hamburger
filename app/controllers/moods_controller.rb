@@ -9,6 +9,9 @@ class MoodsController < ApplicationController
     @mood = Mood.new
     @mood.name = params['name']
     @mood.description = params['description']
+    # # if session[:user_id]
+    #   @mood.user_id = @user.id
+    # # end
     @mood.save
     params['items'].each do |key, value|
       mood_item = MoodItem.new
@@ -24,7 +27,7 @@ class MoodsController < ApplicationController
         flash[:messages] = mood_item.errors.values
       end
     end
-    
+
     redirect_to mood_path(@mood.id)
   end
   def show
