@@ -59,7 +59,8 @@ var ready = function ready() {
     var moodName = document.getElementById('mood_name').value;
     var moodDescription = document.getElementById('mood_description').value;
     var moodItems = collectPositions();
-    var trueData = { items: {}, name: moodName, description: moodDescription };
+    var promptId = $('.prompt')[0].id
+    var trueData = { items: {}, name: moodName, description: moodDescription, prompt_id: promptId };
     for (i = 0; i < moodItems.length; i++) {
       trueData['items']['item' + i] = {
         item_name: moodItems[i].alt,
