@@ -5,10 +5,15 @@ class ApplicationController < ActionController::Base
   def index
     @mood = Mood.new
     generate_items(5)
+    generate_prompt
 
 
   end
   private
+  def generate_prompt
+    prompts = Prompt.all
+    @prompt = prompts.shuffle[0]
+  end
   def generate_items(num)
     all_items = Item.all.shuffle
     # all_items.shuffle!
