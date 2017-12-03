@@ -3,16 +3,18 @@ class MoodsController < ApplicationController
   end
   def create
     response = ""
-
+    # @prompt = params['prompt_id'].to_i
     response = params['items']['item0']['item_name']
     @mood_items = []
     @mood = Mood.new
     @mood.name = params['name']
     @mood.description = params['description']
+    @mood.prompt_id = params['prompt_id'].to_i
     # # if session[:user_id]
     #   @mood.user_id = @user.id
     # # end
     @mood.save
+
     params['items'].each do |key, value|
       mood_item = MoodItem.new
       mood_item.item_id = Item.find_by(:name => params['items'][key]['item_name']).id
@@ -34,7 +36,10 @@ class MoodsController < ApplicationController
     second_id = params[:id].to_i - 1
     @mood = Mood.find(params[:id])
     @mood_items = @mood.mood_items
-    @second_mood = Mood.find(second_id)
+    @second_mood = Mood.find_by(id: second_id)
+    if !@second_mood
+      @second_mood = Mood.first
+    end
     @second_mood_items = @second_mood.mood_items
 
   end
