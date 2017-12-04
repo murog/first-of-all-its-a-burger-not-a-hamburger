@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
       @items << all_items[i]
     end
   end
+
+  def render_404
+    render file: "/public/404.html", status: 404
+  end
 end

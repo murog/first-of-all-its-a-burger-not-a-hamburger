@@ -34,7 +34,10 @@ class MoodsController < ApplicationController
   end
   def show
     second_id = params[:id].to_i - 1
-    @mood = Mood.find(params[:id])
+    @mood = Mood.find_by(id: params[:id])
+    if !@mood
+      return render_404
+    end
     @mood_items = @mood.mood_items
     @second_mood = Mood.find_by(id: second_id)
     if !@second_mood
