@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'application#index'
   get "/auth/:provider/callback", to: "sessions#create"
   post '/logout', to: 'sessions#logout', as: 'logout'
+  get '/gallery', to: 'moods#gallery', as: 'gallery'
   # match '/moods' => 'moods#create', :via => :post
 
 end

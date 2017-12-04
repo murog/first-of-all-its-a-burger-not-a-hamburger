@@ -43,4 +43,8 @@ class MoodsController < ApplicationController
     @second_mood_items = @second_mood.mood_items
 
   end
+
+  def gallery
+    @moods = Mood.all.reverse
+  end
 end
