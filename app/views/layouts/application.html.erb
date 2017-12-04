@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <h2><%= link_to 'SAME', root_path, class: 'logo' %></h2>
+      <h2><%= link_to "SAME</br><span class='rotate'>SAME</span>".html_safe, root_path, class: 'logo' %></h2>
       <nav class="login">
         <%= link_to "Log In", "/auth/github"%>
         <%= link_to "Log Out", logout_path, method: :post%>
