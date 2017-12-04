@@ -29,6 +29,9 @@ a {
   font-weight: bolder;
 }
 
+h1, h2, h3, h4, h5 {
+  font-family: 'Work Sans', sans-serif;
+}
 
 
 /* ---------- Header/Nav ---------- */
@@ -65,6 +68,37 @@ nav {
 .forms {
   padding: 20px;
   text-align: center;
+  background-color: #FFDB00;
+  margin: 100px;
+  font-family: 'Work Sans', sans-serif;
+  border: 4px double #1D191A;
+}
+
+.forms h5 {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 1em;
+}
+
+.forms input:active, .forms input:focus, .forms input {
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  box-shadow: none;
+  color: #1D191A;
+  border-bottom: 2px solid #1D191A;
+}
+
+.forms input::placeholder {
+  color: #1D191A;
+}
+
+.forms button {
+  background-color: rgba(0, 0, 0, 0);
+  color: #1D191A;
+}
+
+.forms button:hover, .forms button:active, .forms button:focus {
+
 }
 
 .prompt {
