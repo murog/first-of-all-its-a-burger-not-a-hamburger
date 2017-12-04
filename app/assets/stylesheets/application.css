@@ -44,7 +44,7 @@ nav {
 /* ---------- Index ---------- */
 
 .draggable {
-  right: 20px;
+  left: 550px;
   position: absolute;
 }
 
@@ -58,7 +58,7 @@ nav {
   left: 0;
   width:400px;
   height: 400px;
-  background: #EEECE8;
+  background: #FFCFD3;
   z-index: -1;
 }
 
@@ -74,31 +74,22 @@ nav {
   font-size: 2em;
   letter-spacing: 0.1em;
   position: absolute;
-  top: 125px;
-  left: 20px;
+  top: 325px;
+  left: 80px;
 }
 
 .prompt:after {
-  content: 'this is your prompt';
+  content: '^ this is your prompt ^';
   color: #00C084;
   font-size: 0.5em;
   font-weight: 300;
   letter-spacing: normal;
   position: absolute;
-  top: -80px;
-  left: 500px;
-  z-index: 100;
-}
-.prompt::before {
-  content: '↖';
-  font-size: 3em;
-  font-weight: 300;
-  position: absolute;
   top: 80px;
-  left: 500px;
-  color: #BFEECA;
+  left: 250px;
   z-index: 100;
 }
+
 
 
 /* ---------- Show ---------- */
@@ -114,7 +105,7 @@ nav {
   margin: 0 auto;
   width:400px;
   height: 400px;
-  background: #fdecee;
+  background: #FFCFD3;
   z-index: -1;
   overflow: hidden;
 }
