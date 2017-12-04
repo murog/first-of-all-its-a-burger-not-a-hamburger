@@ -14,8 +14,11 @@
     <header>
       <h2><%= link_to 'SAME', root_path, class: 'logo' %></h2>
       <nav class="login">
+        <% if @user %>
         <%= link_to "Log In", "/auth/github"%>
+        <% else %>
         <%= link_to "Log Out", logout_path, method: :post%>
+        <% end %>
       </nav>
     </header>
 
