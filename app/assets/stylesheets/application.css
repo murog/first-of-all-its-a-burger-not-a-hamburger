@@ -1,21 +1,21 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require jquery-ui
- *= require_tree .
- *= require_self
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require jquery-ui
+*= require_tree .
+*= require_self
 
 
- */
+*/
 
 /* ------- General Styling ------- */
 body {
@@ -75,12 +75,15 @@ nav {
   min-height: 400px;
 }
 
-#mood-container {
-  margin-top: 40px;
+#mood-container, #mood-container-show {
   width:400px;
   height: 400px;
   background: #FFCFD3;
   z-index: -1;
+}
+
+#mood-container {
+  margin-top: 40px;
 }
 
 .forms {
@@ -99,25 +102,40 @@ nav {
   font-size: 1em;
 }
 
-.forms input:active, .forms input:focus, .forms input {
+.forms input:active, .forms input:focus, .forms input, .forms button,
+.forms button:hover, .forms button:active, .forms button:focus,
+.forms input::placeholder {
   background-color: rgba(0, 0, 0, 0);
+  color: #1D191A;
+  outline: none; /* Adjust for accessibility */
+}
+
+.forms input:active, .forms input:focus, .forms input {
   border: 0;
   box-shadow: none;
-  color: #1D191A;
   border-bottom: 2px solid #1D191A;
 }
 
-.forms input::placeholder {
-  color: #1D191A;
+.forms button{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  transform: rotate(-45deg);
+  color: #FFDB00;
 }
 
-.forms button {
-  background-color: rgba(0, 0, 0, 0);
-  color: #1D191A;
+.button-container {
+  margin: 10px 0;
+  line-height: 36px;
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  background: #1D191A;
+  transform: rotate(45deg);
 }
 
 .forms button:hover, .forms button:active, .forms button:focus {
-
+  color: #FFDB00;
 }
 
 .prompt {
@@ -146,7 +164,7 @@ nav {
   position: absolute;
   top: -20px;
   left: 150px;
-  right: 0px;
+  right: 0;
 }
 
 /* ---------- Show ---------- */
@@ -156,26 +174,24 @@ nav {
 }
 
 #mood-container-show {
-  /*top: 0;
-  left: 0;*/
   position: relative;
   margin: 0 auto;
-  width:400px;
-  height: 400px;
-  background: #FFCFD3;
-  z-index: -1;
   overflow: hidden;
 }
 
 /* ---------- Footer ---------- */
 
 footer p {
-  font-size: 0.7em;
-  letter-spacing: 0.3em;
-  font-weight: 900;
   display: inline-block;
   position: absolute;
-  right: -120px;
+  right: -130px;
   transform-origin: left;
   transform: rotate(-90deg);
+}
+
+nav, footer p {
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+  font-weight: 900;
+  text-transform: uppercase;
 }
