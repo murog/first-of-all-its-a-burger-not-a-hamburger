@@ -23,6 +23,7 @@ var ready = function ready() {
   console.log('im ready');
   $(function () {
     $(".draggable").draggable();
+    $('.prompt').draggable();
     console.log('im next to draggable');
     console.log($('.draggable'));
   });

@@ -17,6 +17,20 @@
 
  */
 
+/* ------- General Styling ------- */
+body {
+  background-color: #FDEEDA;
+  color:#1D191A;
+  font-family: 'Work Sans', sans-serif;
+}
+
+a {
+  color: #1D191A;
+  font-weight: bolder;
+}
+
+
+
 /* ---------- Header/Nav ---------- */
 
 header {
@@ -44,7 +58,7 @@ nav {
   left: 0;
   width:400px;
   height: 400px;
-  background: #fdecee;
+  background: #EEECE8;
   z-index: -1;
 }
 
@@ -52,6 +66,40 @@ nav {
   padding: 20px;
   text-align: center;
 }
+
+.prompt {
+  mix-blend-mode: color-dodge;
+  color: #FD9F9E;
+  font-weight: 900;
+  font-size: 2em;
+  letter-spacing: 0.1em;
+  position: absolute;
+  top: 125px;
+  left: 20px;
+}
+
+.prompt:after {
+  content: 'this is your prompt';
+  color: #00C084;
+  font-size: 0.5em;
+  font-weight: 300;
+  letter-spacing: normal;
+  position: absolute;
+  top: -80px;
+  left: 500px;
+  z-index: 100;
+}
+.prompt::before {
+  content: '↖';
+  font-size: 3em;
+  font-weight: 300;
+  position: absolute;
+  top: 80px;
+  left: 500px;
+  color: #BFEECA;
+  z-index: 100;
+}
+
 
 /* ---------- Show ---------- */
 
