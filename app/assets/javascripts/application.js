@@ -19,21 +19,36 @@
 
 var ready = function ready() {
   $('#save').click( function() {
-    console.log('here');
     console.log($('#mood_form').offset().top);
     $('html').animate({
       scrollTop: $('#mood_form').offset().top
     }, 500);
   });
 
+  $('#tutorial').mouseover( function(event) {
+    createTooltip(event);
+  }).mouseout(function() {
+    $('.tooltip').remove();
+  });
+
+  function createTooltip(event) {
+    var tutorial = '<p>Make an image by dragging items into the box</p><p>Double click to bring an item forward</p><p>Click on items & try pressing S, R, or F to see what happens</p>';
+    $('<div class="tooltip">' + tutorial + '</div>').appendTo('body');
+    positionTooltip(event);
+  };
+
+  function positionTooltip(event){
+    $('div.tooltip').css({'position': 'absolute', 'top': '200px', 'right': '70px'});
+  };
+
 // $(document).ready(function () {
   $(document).empty();
-  console.log('im ready');
+  // console.log('im ready');
   $(function () {
     $(".draggable").draggable();
     $('.prompt').draggable();
-    console.log('im next to draggable');
-    console.log($('.draggable'));
+    // console.log('im next to draggable');
+    // console.log($('.draggable'));
   });
   var setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
     for (var _i = 0; _i < array.length; _i++) {
@@ -80,7 +95,7 @@ var ready = function ready() {
     };
 
     var url = '/moods';
-    console.log('inside saveMood');
+    // console.log('inside saveMood');
     var data = { msg: 'wow' };
     $.ajax({
       type: "POST",
@@ -111,19 +126,19 @@ var collectPositions = function collectPositions() {
       moodItems.push(draggables[i]);
     }
   }
-  console.log('there are ' + moodItems.length + ' items in the container');
-  console.log(moodItems);
+  // console.log('there are ' + moodItems.length + ' items in the container');
+  // console.log(moodItems);
   return moodItems;
 };
 
-$('#mood_button').click(function (e) {
-  console.log('you clicked the save mood button');
-});
+// $('#mood_button').click(function (e) {
+//   console.log('you clicked the save mood button');
+// });
 
 var saveMood = function saveMood() {
   var moodItems = collectPositions();
   var url = '/moods';
-  console.log('inside saveMood');
+  // console.log('inside saveMood');
   var data = { msg: 'wow' };
   $.ajax({
     type: "POST",
