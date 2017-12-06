@@ -18,6 +18,13 @@
 //= require_tree .
 
 var ready = function ready() {
+  $('#save').click( function() {
+    console.log('here');
+    console.log($('#mood_form').offset().top);
+    $('html').animate({
+      scrollTop: $('#mood_form').offset().top
+    }, 500);
+  });
 
 // $(document).ready(function () {
   $(document).empty();
