@@ -18,6 +18,7 @@
 //= require_tree .
 
 var ready = function ready() {
+
 // $(document).ready(function () {
   $(document).empty();
   console.log('im ready');
