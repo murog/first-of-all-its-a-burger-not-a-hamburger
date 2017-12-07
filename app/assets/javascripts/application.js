@@ -18,11 +18,7 @@
 //= require_tree .
 
 function getRotationDegrees(obj) {
-    var matrix = obj.css("-webkit-transform") ||
-    obj.css("-moz-transform")    ||
-    obj.css("-ms-transform")     ||
-    obj.css("-o-transform")      ||
-    obj.css("transform");
+    var matrix = obj.css("transform");
     if(matrix !== 'none') {
         var values = matrix.split('(')[1].split(')')[0].split(',');
         var a = values[0];
@@ -30,6 +26,20 @@ function getRotationDegrees(obj) {
         var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
     } else { var angle = 0; }
     return (angle < 0) ? angle + 360 : angle;
+}
+
+function getScale(obj) {
+  var matrixRegex = /matrix\((-?\d*\.?\d+),\s*0,\s*0,\s*(-?\d*\.?\d+),\s*0,\s*0\)/,
+  matches = $(obj).css('transform').match(matrixRegex);
+  return matches === null ? 1 : parseFloat(matches[1]);
+}
+
+function getFlip(obj){
+  console.log(obj.get(0).style.transform); // Get transform properties easily
+  var regExp = /\(([^)]+)\)/;
+  var matches = regExp.exec(obj.get(0).style.transform);
+
+  return matches === null ? 1 : parseFloat(matches[1]);
 }
 
 var ready = function ready() {
@@ -40,22 +50,28 @@ var ready = function ready() {
   });
 
   $('body').on('keydown', function(event) {
-
     switch(event.keyCode){
       case 82:
         let degrees = getRotationDegrees($('.selected'));
 
         if(degrees === undefined){ degrees = 45;}
         degrees = (degrees === 315) ? 0 : degrees + 45;
-        
         $('.selected').css({ Transform: 'rotate(' + degrees + 'deg)'});
         break;
+      case 83:
+        let scale = getScale($('.selected'));
+
+        scale = (scale === 3) ? scale = 1 : scale + 0.5;
+        $('.selected').css({ Transform: 'scale(' + scale + ',' + scale + ')'});
+        break;
+      case 70:
+        let flip = getFlip($('.selected'));
+
+        flip = (flip === null || flip === 1) ? -1 : 1;
+        $('.selected').css({ Transform: 'scaleX(' + flip + ')'});
+        break;
     }
-
-
-    // Set the class to degrees
-
-
+    // Combine snippets to make transform
   });
 
   // create side menu events
