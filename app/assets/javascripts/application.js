@@ -44,12 +44,10 @@ var ready = function ready() {
 
 // $(document).ready(function () {
   $(document).empty();
-  // console.log('im ready');
+
   $(function () {
     $(".draggable").draggable();
     $('.prompt').draggable();
-    // console.log('im next to draggable');
-    // console.log($('.draggable'));
   });
   var setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
     for (var _i = 0; _i < array.length; _i++) {
@@ -96,7 +94,6 @@ var ready = function ready() {
     };
 
     var url = '/moods';
-    // console.log('inside saveMood');
     var data = { msg: 'wow' };
     $.ajax({
       type: "POST",
@@ -132,14 +129,9 @@ var collectPositions = function collectPositions() {
   return moodItems;
 };
 
-// $('#mood_button').click(function (e) {
-//   console.log('you clicked the save mood button');
-// });
-
 var saveMood = function saveMood() {
   var moodItems = collectPositions();
   var url = '/moods';
-  // console.log('inside saveMood');
   var data = { msg: 'wow' };
   $.ajax({
     type: "POST",
