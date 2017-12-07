@@ -4,9 +4,16 @@
 
 <section>
   <aside>
-    <div id="save"></div>
-    <div id="tutorial"></div>
-    <div id="trash"></div>
+    <button id="save"></button>
+    <button id="tutorial"></button>
+    <div class="tooltip" style="display: none">
+      <h5>How to use</h5>
+      <p><%= image_tag 'Drag.gif', alt: 'Drag motion' %></p>
+      <p>Make an mood by dragging items into the box</p>
+      <p><%= image_tag 'DoubleTap.gif', alt: 'Drag motion' %></p>
+      <p>Double click to bring an item forward</p>
+    </div>
+    <button id="trash"></button>
   </aside>
   <div id="mood-container">
   </div>

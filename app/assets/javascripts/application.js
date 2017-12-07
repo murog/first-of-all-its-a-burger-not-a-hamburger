@@ -18,6 +18,8 @@
 //= require_tree .
 
 var ready = function ready() {
+
+  // create side menu events
   $('#save').click( function() {
     console.log($('#mood_form').offset().top);
     $('html').animate({
@@ -25,15 +27,14 @@ var ready = function ready() {
     }, 500);
   });
 
-  $('#tutorial').mouseover( function(event) {
+  $('#tutorial').click( function(event) {
     createTooltip(event);
   }).mouseout(function() {
-    $('.tooltip').remove();
+    $('.tooltip').css({'display': 'none'});
   });
 
   function createTooltip(event) {
-    var tutorial = '<p>Make an image by dragging items into the box</p><p>Double click to bring an item forward</p><p>Click on items & try pressing S, R, or F to see what happens</p>';
-    $('<div class="tooltip">' + tutorial + '</div>').appendTo('body');
+    $('.tooltip').css({'display': 'block'});
     positionTooltip(event);
   };
 

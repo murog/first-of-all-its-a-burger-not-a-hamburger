@@ -82,6 +82,10 @@ nav {
   position: absolute;
 }
 
+#save:focus, #tutorial:focus, #trash:focus {
+  outline: none;
+}
+
 #save, #save:before, #tutorial, #trash {
   border: 4px solid $t-black;
 }
@@ -127,7 +131,7 @@ nav {
 
 #tutorial:before {
   content: '?';
-  top: -5px;
+  top: 0;
   left: 4px;
   font-weight: 900;
   font-size: 1.4em;
@@ -139,7 +143,9 @@ nav {
 }
 
 .tooltip {
+  text-align: center;
   padding: 20px;
+  width: 200px;
   border-radius: 10px;
   background: white;
   font-size: 0.6em;
@@ -302,7 +308,7 @@ footer p {
   transform: rotate(-90deg);
 }
 
-nav, footer p {
+nav, footer p, .tooltip h5 {
   font-size: 0.7em;
   letter-spacing: 0.2em;
   font-weight: 900;
