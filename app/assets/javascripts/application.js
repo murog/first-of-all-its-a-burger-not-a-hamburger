@@ -58,7 +58,17 @@ var ready = function ready() {
   });
 
   $('body').on('keydown', function(event) {
+
+    if($(':focus')){
+      $('.selected').removeClass('selected');
+    }
+
     var degrees, scale, flip;
+
+    if ($('.selected').length === 0) {
+      return;
+    }
+
     var transform = getTransform($('.selected'));
     if(transform === null){
       transform = { rotate: 0, scale: 1, scaleX: 1 };
