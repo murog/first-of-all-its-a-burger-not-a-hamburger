@@ -10,12 +10,10 @@
   </article>
 
   <article class="cell small-12 large-6">
-    <h3><%= @mood.name%></h3>
+    <h4><%= @mood.name%></h4>
     <p><%= @mood.description%></p>
       <% if @mood.prompt %>
-      <p>
-        <%= @mood.prompt.text %>
-    </p>
+      <p class="mood-prompt"><%= @mood.prompt.text %></p>
     <% end %>
   </article>
 </section>
@@ -31,7 +29,10 @@
   </article>
 
   <article class="cell small-12 large-6">
-    <h3><%= @second_mood.name%></h3>
+    <h4><%= @second_mood.name%></h4>
     <p><%= @second_mood.description%></p>
+      <% if @second_mood.prompt %>
+      <p class="mood-prompt"><%= @second_mood.prompt.text %></p>
+    <% end %>
   </article>
 </section>
