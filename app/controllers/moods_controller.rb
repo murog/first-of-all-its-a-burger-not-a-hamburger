@@ -21,6 +21,7 @@ class MoodsController < ApplicationController
       mood_item.left_coord = params['items'][key]['left_coord']
       mood_item.top_coord = params['items'][key]['top_coord']
       mood_item.z_index = params['items'][key]['z_index']
+      mood_item.transform = params['items'][key]['transform']
       mood_item.mood_id = @mood.id
       if mood_item.save
         @mood_items << mood_item
