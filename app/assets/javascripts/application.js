@@ -144,7 +144,8 @@ var ready = function ready() {
         item_name: moodItems[i].alt,
         left_coord: moodItems[i].left,
         top_coord: moodItems[i].top,
-        z_index: moodItems[i].zStuff
+        z_index: moodItems[i].zStuff,
+        transform: moodItems[i].transform
       };
     };
 
@@ -157,13 +158,14 @@ var ready = function ready() {
     });
   });
 };
-
+//  GM- consider renaming function to collectAttributes?
 var collectPositions = function collectPositions() {
   var mood = $('#mood-container');
   mood.top = 100;
   mood.bottom = 530;
   mood.left = 0;
   mood.right = 430;
+  // GM - refers to items with draggable class
   var draggables = $('.draggable');
   var moodItems = [];
   for (i = 0; i < draggables.length; i++) {
@@ -175,6 +177,7 @@ var collectPositions = function collectPositions() {
     var topEnd = item.top.length - 2;
     item.top = parseFloat(item.top.substring(0, topEnd));
     item.zStuff = parseFloat(item.style.zIndex);
+    item.transform = item.style.transform;
     if (item.top <= mood.bottom && item.top >= mood.top && item.left <= mood.right) {
       moodItems.push(draggables[i]);
     }
