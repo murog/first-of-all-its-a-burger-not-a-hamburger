@@ -4,7 +4,7 @@
     <div id="mood-container-show">
       <% mood.mood_items.each do |item| %>
         <% top_coord = item.top_coord.to_f %>
-        <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f - 160}px; left: #{item.left_coord.to_f - 30}px; z-index: #{item.z_index} " %>
+        <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f - 160}px; left: #{item.left_coord.to_f - 30}px; z-index: #{item.z_index}; transform: #{item.transform}" %>
       <% end %>
     </div>
   </article>
