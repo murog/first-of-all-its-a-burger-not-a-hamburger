@@ -18,20 +18,20 @@
 //= require_tree .
 
 function getTransform(obj) {
-  let property = (obj.get(0).style.transform);
+  var property = obj.get(0).style.transform;
 
-  if(property === ''){
+  if (property === '') {
     return null;
   }
 
   var regExp = /(?:\()[^\(\)]*?(?:\))/g;
-  var matches = (property).match(regExp);
+  var matches = property.match(regExp);
   var rotate, scale, scaleX;
 
-  matches.forEach(function(item){
+  matches.forEach(function (item) {
     var tempString = "";
-    for(var i = 1; i < item.length; i++){
-      switch(item[i]){
+    for (var i = 1; i < item.length; i++) {
+      switch (item[i]) {
         case 'd':
           rotate = parseInt(tempString);
           break;
@@ -47,21 +47,21 @@ function getTransform(obj) {
       }
     }
   });
-  return({rotate: rotate, scale: scale, scaleX: scaleX});
+  return { rotate: rotate, scale: scale, scaleX: scaleX };
 }
 
 var ready = function ready() {
 
-  $('.draggable').click(function(e){
+  $('.draggable').click(function (e) {
     $('.draggable').removeClass('selected');
     $(this).addClass('selected');
   });
 
-  $('#mood_form').click(function(e){
+  $('#mood_form').click(function (e) {
     $('.selected').removeClass('selected');
   });
 
-  $('body').on('keydown', function(event) {
+  $('body').on('keydown', function (event) {
 
     var degrees, scale, flip;
 
@@ -70,7 +70,7 @@ var ready = function ready() {
     }
 
     var transform = getTransform($('.selected'));
-    if(transform === null){
+    if (transform === null) {
       transform = { rotate: 0, scale: 1, scaleX: 1 };
       rotate = 0;
       scale = 1;
@@ -81,44 +81,44 @@ var ready = function ready() {
     scale = transform.scale;
     flip = transform.scaleX;
 
-    switch(event.keyCode){
+    switch (event.keyCode) {
       case 82:
-        degrees = ( degrees === undefined || degrees === 315) ? 0 : degrees + 45;
+        degrees = degrees === undefined || degrees === 315 ? 0 : degrees + 45;
         break;
       case 83:
-        scale = (scale === undefined || scale === 3) ? scale = 1 : scale + 0.5;
+        scale = scale === undefined || scale === 3 ? scale = 1 : scale + 0.5;
         break;
       case 70:
-        flip = (flip === undefined || flip === 1) ? -1 : 1;
+        flip = flip === undefined || flip === 1 ? -1 : 1;
         break;
     }
     $('.selected').css({ transform: 'rotate(' + degrees + 'deg)' + ' scale(' + scale + ',' + scale + ')' + ' scaleX(' + flip + ')' });
   });
 
   // create side menu events
-  $('#save').click( function() {
+  $('#save').click(function () {
     console.log($('#mood_form').offset().top);
     $('html').animate({
       scrollTop: $('#mood_form').offset().top
     }, 500);
   });
 
-  $('#tutorial').click( function(event) {
+  $('#tutorial').click(function (event) {
     createTooltip(event);
-  }).mouseout(function() {
-    $('.tooltip').css({'display': 'none'});
+  }).mouseout(function () {
+    $('.tooltip').css({ 'display': 'none' });
   });
 
   function createTooltip(event) {
-    $('.tooltip').css({'display': 'block'});
+    $('.tooltip').css({ 'display': 'block' });
     positionTooltip(event);
   };
 
-  function positionTooltip(event){
-    $('div.tooltip').css({'position': 'absolute', 'top': '200px', 'right': '70px'});
+  function positionTooltip(event) {
+    $('div.tooltip').css({ 'position': 'absolute', 'top': '200px', 'right': '70px' });
   };
 
-// $(document).ready(function () {
+  // $(document).ready(function () {
   $(document).empty();
 
   $(function () {
@@ -158,7 +158,7 @@ var ready = function ready() {
     var moodName = document.getElementById('mood_name').value;
     var moodDescription = document.getElementById('mood_description').value;
     var moodItems = collectPositions();
-    var promptId = $('.prompt')[0].id
+    var promptId = $('.prompt')[0].id;
     var trueData = { items: {}, name: moodName, description: moodDescription, prompt_id: promptId };
     for (i = 0; i < moodItems.length; i++) {
       trueData['items']['item' + i] = {
