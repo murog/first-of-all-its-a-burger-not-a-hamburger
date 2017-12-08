@@ -57,11 +57,11 @@ var ready = function ready() {
     $(this).addClass('selected');
   });
 
-  $('body').on('keydown', function(event) {
+  $('#mood_form').click(function(e){
+    $('.selected').removeClass('selected');
+  });
 
-    if($(':focus')){
-      $('.selected').removeClass('selected');
-    }
+  $('body').on('keydown', function(event) {
 
     var degrees, scale, flip;
 
