@@ -3,27 +3,28 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :find_user
 
-
   def index
     @mood = Mood.new
-    generate_items(5)
-    generate_prompt
-
-
+    @items = generate_items(5)
+    @prompt = generate_prompt
   end
+
   private
+
   def generate_prompt
     prompts = Prompt.all
-    @prompt = prompts.shuffle[0]
+    return prompts.shuffle[0]
   end
+
   def generate_items(num)
     all_items = Item.all.shuffle
     # all_items.shuffle!
-    @items = []
+    items = []
     num.times do |i|
       return if all_items[i].nil?
-      @items << all_items[i]
+      items << all_items[i]
     end
+    return items
   end
 
   def render_404
@@ -35,6 +36,5 @@ class ApplicationController < ActionController::Base
       @user = User.find_by(id: session[:user_id])
     end
   end
-
 
 end
