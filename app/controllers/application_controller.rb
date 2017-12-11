@@ -5,22 +5,11 @@ class ApplicationController < ActionController::Base
 
   def index
     @mood = Mood.new
-    @items = generate_items(5)
+    @items = Item.generate_items(5)
     @prompt = Prompt.generate_prompt
   end
 
   private
-
-  def generate_items(num)
-    all_items = Item.all.shuffle
-    # all_items.shuffle!
-    items = []
-    num.times do |i|
-      return if all_items[i].nil?
-      items << all_items[i]
-    end
-    return items
-  end
 
   def render_404
     render file: "/public/404.html", status: 404
