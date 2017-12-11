@@ -1,6 +1,7 @@
 class MoodsController < ApplicationController
   def new
   end
+
   def create
     response = ""
     # @prompt = params['prompt_id'].to_i
@@ -30,9 +31,9 @@ class MoodsController < ApplicationController
         flash[:messages] = mood_item.errors.values
       end
     end
-
     redirect_to mood_path(@mood.id)
   end
+
   def show
     second_id = params[:id].to_i - 1
     @mood = Mood.find_by(id: params[:id])
@@ -45,7 +46,6 @@ class MoodsController < ApplicationController
       @second_mood = Mood.first
     end
     @second_mood_items = @second_mood.mood_items
-
   end
 
   def gallery
