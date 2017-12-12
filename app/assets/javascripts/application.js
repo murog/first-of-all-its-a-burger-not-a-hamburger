@@ -17,87 +17,108 @@
 //= require turbolinks
 //= require_tree .
 
-function getRotationDegrees(obj) {
-    var matrix = obj.css("transform");
-    if(matrix !== 'none') {
-        var values = matrix.split('(')[1].split(')')[0].split(',');
-        var a = values[0];
-        var b = values[1];
-        var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
-    } else { var angle = 0; }
-    return (angle < 0) ? angle + 360 : angle;
-}
+function getTransform(obj) {
+  var property = obj.get(0).style.transform;
 
-function getScale(obj) {
-  var matrixRegex = /matrix\((-?\d*\.?\d+),\s*0,\s*0,\s*(-?\d*\.?\d+),\s*0,\s*0\)/,
-  matches = $(obj).css('transform').match(matrixRegex);
-  return matches === null ? 1 : parseFloat(matches[1]);
-}
+  if (property === '') {
+    return null;
+  }
 
-function getFlip(obj){
-  console.log(obj.get(0).style.transform); // Get transform properties easily
-  var regExp = /\(([^)]+)\)/;
-  var matches = regExp.exec(obj.get(0).style.transform);
+  var regExp = /(?:\()[^\(\)]*?(?:\))/g;
+  var matches = property.match(regExp);
+  var rotate, scale, scaleX;
 
-  return matches === null ? 1 : parseFloat(matches[1]);
+  matches.forEach(function (item) {
+    var tempString = "";
+    for (var i = 1; i < item.length; i++) {
+      switch (item[i]) {
+        case 'd':
+          rotate = parseInt(tempString);
+          break;
+        case ')':
+          scaleX = parseInt(tempString);
+          break;
+        case ',':
+          scale = parseFloat(tempString);
+          break;
+        default:
+          tempString += item[i];
+          break;
+      }
+    }
+  });
+  return { rotate: rotate, scale: scale, scaleX: scaleX };
 }
 
 var ready = function ready() {
 
-  $('.draggable').click(function(e){
+  $('.draggable').click(function (e) {
     $('.draggable').removeClass('selected');
     $(this).addClass('selected');
   });
 
-  $('body').on('keydown', function(event) {
-    switch(event.keyCode){
-      case 82:
-        let degrees = getRotationDegrees($('.selected'));
+  $('#mood_form').click(function (e) {
+    $('.selected').removeClass('selected');
+  });
 
-        if(degrees === undefined){ degrees = 45;}
-        degrees = (degrees === 315) ? 0 : degrees + 45;
-        $('.selected').css({ Transform: 'rotate(' + degrees + 'deg)'});
+  $('body').on('keydown', function (event) {
+
+    var degrees, scale, flip;
+
+    if ($('.selected').length === 0) {
+      return;
+    }
+
+    var transform = getTransform($('.selected'));
+    if (transform === null) {
+      transform = { rotate: 0, scale: 1, scaleX: 1 };
+      rotate = 0;
+      scale = 1;
+      flip = 1;
+    }
+
+    degrees = transform.rotate;
+    scale = transform.scale;
+    flip = transform.scaleX;
+
+    switch (event.keyCode) {
+      case 82:
+        degrees = degrees === undefined || degrees === 315 ? 0 : degrees + 45;
         break;
       case 83:
-        let scale = getScale($('.selected'));
-
-        scale = (scale === 3) ? scale = 1 : scale + 0.5;
-        $('.selected').css({ Transform: 'scale(' + scale + ',' + scale + ')'});
+        scale = scale === undefined || scale === 3 ? scale = 1 : scale + 0.5;
         break;
       case 70:
-        let flip = getFlip($('.selected'));
-
-        flip = (flip === null || flip === 1) ? -1 : 1;
-        $('.selected').css({ Transform: 'scaleX(' + flip + ')'});
+        flip = flip === undefined || flip === 1 ? -1 : 1;
         break;
     }
-    // Combine snippets to make transform
+    $('.selected').css({ transform: 'rotate(' + degrees + 'deg)' + ' scale(' + scale + ',' + scale + ')' + ' scaleX(' + flip + ')' });
   });
 
   // create side menu events
-  $('#save').click( function() {
+  $('#save').click(function () {
     console.log($('#mood_form').offset().top);
     $('html').animate({
       scrollTop: $('#mood_form').offset().top
     }, 500);
   });
 
-  $('#tutorial').click( function(event) {
+  $('#tutorial').click(function (event) {
     createTooltip(event);
-  }).mouseout(function() {
-    $('.tooltip').css({'display': 'none'});
+  }).mouseout(function () {
+    $('.tooltip').css({ 'display': 'none' });
   });
 
   function createTooltip(event) {
-    $('.tooltip').css({'display': 'block'});
+    $('.tooltip').css({ 'display': 'block' });
     positionTooltip(event);
   };
 
-  function positionTooltip(event){
-    $('div.tooltip').css({'position': 'absolute', 'top': '200px', 'right': '70px'});
+  function positionTooltip(event) {
+    $('div.tooltip').css({ 'position': 'absolute', 'top': '200px', 'right': '70px' });
   };
 
-// $(document).ready(function () {
+  // $(document).ready(function () {
   $(document).empty();
 
   $(function () {
@@ -137,7 +158,7 @@ var ready = function ready() {
     var moodName = document.getElementById('mood_name').value;
     var moodDescription = document.getElementById('mood_description').value;
     var moodItems = collectPositions();
-    var promptId = $('.prompt')[0].id
+    var promptId = $('.prompt')[0].id;
     var trueData = { items: {}, name: moodName, description: moodDescription, prompt_id: promptId };
     for (i = 0; i < moodItems.length; i++) {
       trueData['items']['item' + i] = {

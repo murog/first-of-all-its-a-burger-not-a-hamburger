@@ -10,12 +10,10 @@
   </article>
 
   <article class="cell small-12 large-6">
-    <h3><%= @mood.name%></h3>
+    <h4><%= @mood.name%></h4>
     <p><%= @mood.description%></p>
       <% if @mood.prompt %>
-      <p>
-        <%= @mood.prompt.text %>
-    </p>
+      <p class="mood-prompt"><%= @mood.prompt.text %></p>
     <% end %>
   </article>
 </section>
@@ -25,13 +23,16 @@
     <div id="mood-container-show">
       <% @second_mood_items.each do |item| %>
         <% top_coord = item.top_coord.to_f %>
-        <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f - 160}px; left: #{item.left_coord.to_f - 30}px; z-index: #{item.z_index} " %>
+        <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f - 160}px; left: #{item.left_coord.to_f - 30}px; z-index: #{item.z_index}; transform: #{item.transform}" %>
       <% end %>
     </div>
   </article>
 
   <article class="cell small-12 large-6">
-    <h3><%= @second_mood.name%></h3>
+    <h4><%= @second_mood.name%></h4>
     <p><%= @second_mood.description%></p>
+      <% if @second_mood.prompt %>
+      <p class="mood-prompt"><%= @second_mood.prompt.text %></p>
+    <% end %>
   </article>
 </section>

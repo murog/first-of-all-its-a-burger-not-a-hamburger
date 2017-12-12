@@ -11,10 +11,10 @@ class SessionsController < ApplicationController
       else
         flash[:status] = :success
         flash[:result_text] = "Successfully logged in as existing user #{user.username}"
-        redirect_to root_path
       end
 
       session[:user_id] = user.id
+      redirect_to root_path
     else
       flash.now[:status] = :failure
       flash.now[:result_text] = "Could not log in"
