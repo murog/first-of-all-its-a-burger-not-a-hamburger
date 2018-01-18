@@ -6,21 +6,20 @@ class ApplicationController < ActionController::Base
 
   def index
     @mood = Mood.new
-    # generate_items(5)
-    # generate_prompt
-    generate_bday_prompt
-    generate_bday_items(4)
+    generate_items(5)
+    generate_prompt
+    # generate_bday_prompt
+    # generate_bday_items(4)
 
   end
 
   private
   def generate_prompt
-    prompts = Prompt.all
+    prompts = Prompt.where("id < ?", 33)
     @prompt = prompts.shuffle[0]
   end
   def generate_items(num)
-    all_items = Item.all.shuffle
-    # all_items.shuffle!
+    all_items = Item.where("url != ?", "birthday.png").shuffle
     @items = []
     num.times do |i|
       return if all_items[i].nil?
@@ -29,7 +28,6 @@ class ApplicationController < ActionController::Base
   end
   def generate_bday_items(num)
     all_items = Item.all.shuffle
-    # all_items.shuffle!
     @items = []
     num.times do |i|
       return if all_items[i].nil?
