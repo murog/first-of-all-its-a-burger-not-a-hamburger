@@ -1,5 +1,9 @@
-  <% @items.each do |item| %>
-    <%= image_tag item.url, class: 'draggable', alt: item.name %>
+  <% @items.each_with_index do |item, i| %>
+    <% if(i > 4) %>
+      <%= image_tag item.url, class: 'hidden draggable', alt: item.name %>
+    <% else %>
+      <%= image_tag item.url, class: 'draggable', alt: item.name %>
+    <% end %>
   <% end %>
 
 <section>
@@ -13,7 +17,7 @@
       <p><%= image_tag 'DoubleTap.gif', alt: 'Drag motion' %></p>
       <p>Double click to bring an item forward</p>
     </div>
-    <button id="trash"></button>
+    <button id="trash" ></button>
   </aside>
   <div id="mood-container">
   </div>

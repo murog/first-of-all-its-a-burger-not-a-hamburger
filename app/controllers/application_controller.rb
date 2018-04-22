@@ -3,37 +3,30 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :find_user
 
-
   def index
     @mood = Mood.new
-    generate_items(5)
+    generate_items(10)
     generate_prompt
     # generate_bday_prompt
     # generate_bday_items(4)
-
   end
 
   private
+
   def generate_prompt
     prompts = Prompt.where("id < ?", 33)
     @prompt = prompts.shuffle[0]
   end
+
   def generate_items(num)
     all_items = Item.where("url != ?", "birthday.png").shuffle
     @items = []
+
     num.times do |i|
       return if all_items[i].nil?
       @items << all_items[i]
     end
-  end
-  def generate_bday_items(num)
-    all_items = Item.all.shuffle
-    @items = []
-    num.times do |i|
-      return if all_items[i].nil?
-      @items << all_items[i]
-    end
-    @items << Item.find(73)
+
   end
 
   def render_404
@@ -46,6 +39,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def generate_bday_items(num)
+    all_items = Item.all.shuffle
+    @items = []
+    num.times do |i|
+      return if all_items[i].nil?
+      @items << all_items[i]
+    end
+    @items << Item.find(73)
+  end
+
   def generate_bday_prompt
     bday_prompts = Prompt.where("id > ?", 32)
     @prompt = bday_prompts.shuffle[0]
@@ -55,9 +58,5 @@ class ApplicationController < ActionController::Base
       temp_bday.save
       @prompt = temp_bday
     end
-
-
   end
-
-
 end

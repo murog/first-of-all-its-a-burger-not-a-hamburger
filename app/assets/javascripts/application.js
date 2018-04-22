@@ -124,7 +124,18 @@ var ready = function ready() {
   $(function () {
     $(".draggable").draggable();
     $('.prompt').draggable();
-  });
+
+    $( "#trash" ).droppable({
+      drop: function( event, ui ) {
+        // Maybe make hidden again?
+        $('.selected').remove();
+
+        var otherItems = $('.hidden').first();
+        otherItems.removeClass('hidden').addClass('draggable');
+      }
+    });
+});
+
   var setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
     for (var _i = 0; _i < array.length; _i++) {
       $(array[_i]).css({ 'z-index': '' + _i });
@@ -151,6 +162,14 @@ var ready = function ready() {
       }
     };
     collectPositions();
+  });
+
+  $('.draggable').on('drag', function() {
+
+    if(!$(this).hasClass('selected')){
+      $('.draggable').removeClass('selected');
+      $(this).addClass('selected');
+    }
   });
 
   $('body').on('submit', '#mood_form', function (e) {
