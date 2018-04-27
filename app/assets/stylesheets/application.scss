@@ -177,6 +177,10 @@ nav {
   border-bottom: 10px solid transparent;
 }
 
+.tutorial-rotate {
+  transform: rotate(180deg);
+}
+
 #trash {
   margin-top: 15px;
   height: 26px;
