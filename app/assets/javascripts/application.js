@@ -123,9 +123,10 @@ var ready = function ready() {
 
   $(function () {
     $(".draggable").draggable();
+    //$(".draggable").first().addClass("selected");
     $('.prompt').draggable();
 
-    $( "#trash" ).droppable({
+    $( "#trashCover" ).droppable({
       drop: function( event, ui ) {
         // Maybe make hidden again?
         $('.selected').remove();
