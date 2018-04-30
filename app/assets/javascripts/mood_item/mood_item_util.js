@@ -1,7 +1,7 @@
 // There were a lot of listners to events being set in application.js
 // Most listeners were there to make sure each mood had the correct classes
 // Put them all here so application.js is less cluttered
-var init_mood_util_listeners = function init_mood_util_listeners(){
+var init_mood_item_util = function init_mood_item_util(){
   // sets clicked item as selected item
   $('.draggable').click(function (e) {
     $('.draggable').removeClass('selected');
@@ -34,14 +34,6 @@ var init_mood_util_listeners = function init_mood_util_listeners(){
     };
     collectPositions();
   });
-}
-
-// sets the z-index of the mood_items
-var setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
-  for (var _i = 0; _i < array.length; _i++) {
-    $(array[_i]).css({ 'z-index': '' + _i });
-  }
-};
 
   // If it's being dragged, it's the new selected mood_item now
   // IDR - are click and drag events supposed to be differently handled?
@@ -51,6 +43,14 @@ var setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
       $(this).addClass('selected');
     }
   });
+}
+
+// sets the z-index of the mood_items
+var setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
+  for (var _i = 0; _i < array.length; _i++) {
+    $(array[_i]).css({ 'z-index': '' + _i });
+  }
+};
 
 //  Collects the positions of the mood_items in the mood_container (pink box thing)
 //  GM- consider renaming function to collectAttributes?

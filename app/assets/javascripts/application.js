@@ -23,7 +23,7 @@ var ready = function ready() {
 
   init_sidemenu();
 
-  init_mood_util_listeners();
+  init_mood_item_util();
 
   init_submit_form();
 
