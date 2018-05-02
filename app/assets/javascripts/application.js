@@ -81,6 +81,9 @@ var ready = function ready() {
     scale = transform.scale;
     flip = transform.scaleX;
 
+
+    let current;
+
     switch (event.keyCode) {
       case 82:
         degrees = degrees === undefined || degrees === 315 ? 0 : degrees + 45;
@@ -91,8 +94,41 @@ var ready = function ready() {
       case 70:
         flip = flip === undefined || flip === 1 ? -1 : 1;
         break;
+      case 37:
+        // left
+        current = $('.selected').position().left;
+        $(".selected").css('left', current - 10);
+        break;
+      case 38:
+        // up
+        current = $('.selected').position().top;
+        $(".selected").css('top', current - 10);
+        break;
+      case 39:
+        // right
+        current = $('.selected').position().left;
+        $(".selected").css('left', current + 10);
+        break;
+      case 40:
+        // down
+        current = $('.selected').position().top;
+        $(".selected").css('top', current + 10);
+        break;
     }
-    $('.selected').css({ transform: 'rotate(' + degrees + 'deg)' + ' scale(' + scale + ',' + scale + ')' + ' scaleX(' + flip + ')' });
+
+    event.preventDefault();
+
+    if(event.keyCode === 9){
+      // NOTE: COULD ALSO CYCLE THROUGH INSTEAD OF RANDOM WITH A GLOBAL VARIABLE
+      $('.selected').removeClass('selected');
+      const len = $('.draggable:not(:hidden)').length;
+      const random = Math.floor( Math.random() * len ) + 1;
+      $('.draggable:not(:hidden)').eq(random).addClass('selected');
+
+      // Change selected to the one after the currently selected
+    }else{
+      $('.selected').css({ transform: 'rotate(' + degrees + 'deg)' + ' scale(' + scale + ',' + scale + ')' + ' scaleX(' + flip + ')' });
+    }
   });
 
   // create side menu events
@@ -123,7 +159,7 @@ var ready = function ready() {
 
   $(function () {
     $(".draggable").draggable();
-    //$(".draggable").first().addClass("selected");
+    $(".draggable").first().addClass("selected");
     $('.prompt').draggable();
 
     $( "#trashCover" ).droppable({
