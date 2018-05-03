@@ -1,3 +1,4 @@
+
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
@@ -18,6 +19,26 @@ Minitest::Reporters.use!(
 
 # Uncomment for awesome colorful output
 # require "minitest/pride"
+
+def setup #runs once at the beginning of testing
+  OmniAuth.config.test_mode = true
+end
+
+def mock_auth_hash(user)
+  return {
+    provider: user.provider,
+    uid: user.uid,
+    info: {
+      username: user.username,
+      email: user.email
+    }
+  }
+end
+
+def log_in(user, provider)
+  OmniAuth.config.mock_auth[provider] = OmniAuth::AuthHash.new(mock_auth_hash(user))
+  get auth_callback_path(provider)
+end
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.

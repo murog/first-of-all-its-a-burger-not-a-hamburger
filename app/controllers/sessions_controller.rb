@@ -4,16 +4,16 @@ class SessionsController < ApplicationController
     auth_hash = request.env['omniauth.auth']
 
     if auth_hash['uid']
-      user = User.find_by(uid: auth_hash[:uid], provider: 'github')
-      if user.nil?
-        user = User.from_auth_hash(params[:provider], auth_hash)
+      @user = User.find_by(uid: auth_hash[:uid], provider: 'github')
+      if @user.nil?
+        user = User.from_auth_hash(auth_hash[:provider], auth_hash)
         user.save
       else
         flash[:status] = :success
         flash[:result_text] = "Successfully logged in as existing user #{user.username}"
       end
 
-      session[:user_id] = user.id
+      session[:user_id] = @user.id
       redirect_to root_path
     else
       flash.now[:status] = :failure
