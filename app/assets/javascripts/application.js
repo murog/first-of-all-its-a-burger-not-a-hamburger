@@ -21,11 +21,13 @@ var ready = function ready() {
 
   init_transform_commands_handler();
 
+
   init_sidemenu();
 
   init_mood_item_util();
 
   init_submit_form();
+
 
 };
 
