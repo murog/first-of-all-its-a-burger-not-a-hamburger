@@ -25,9 +25,9 @@ var init_sidemenu = function init_sidemenu(){
   $(document).empty();
 
   $(function () {
-    $(".draggable").draggable();
+    $(".draggable").draggable({ scroll: false } );
     $(".draggable").first().addClass("selected");
-    $('.prompt').draggable();
+    $('.prompt').draggable( { scroll: false } );
 
     $( "#trashCover" ).droppable({
       drop: function( event, ui ) {
