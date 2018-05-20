@@ -21,6 +21,7 @@ var ready = function ready() {
 
   init_transform_commands_handler();
 
+  init_background_buttons();
 
   init_sidemenu();
 

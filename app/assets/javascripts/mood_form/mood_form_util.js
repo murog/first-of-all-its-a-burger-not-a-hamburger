@@ -10,6 +10,13 @@ function saveMood() {
   });
 };
 
+var init_background_buttons = function init_background_buttons(){
+  $('.background-button').click(function (event) {
+      var color = $(this).css('backgroundColor');
+      $('#mood-container').css('backgroundColor', color);
+  });
+}
+
 // Initializes event handler for when user presses submit
 var init_submit_form = function init_submit_form(){
   // Submits the mood form
@@ -19,6 +26,7 @@ var init_submit_form = function init_submit_form(){
       var moodDescription = document.getElementById('mood_description').value;
       var moodItems = collectPositions();
       var promptId = $('.prompt')[0].id;
+      var backgroundColor = $('#mood-container').css('backgroundColor');
       var trueData = { items: {}, name: moodName, description: moodDescription, prompt_id: promptId };
       for (i = 0; i < moodItems.length; i++) {
         trueData['items']['item' + i] = {
