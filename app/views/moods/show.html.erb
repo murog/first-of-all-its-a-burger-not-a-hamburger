@@ -1,7 +1,7 @@
 <section class="mood grid-x">
   <article class="cell small-12 large-6">
     <!-- th - reconsider `item`, in other areas its called mood-item -->
-    <div id="mood-container-show">
+    <div id="mood-container-show" style='background-color: <%= @mood.background%>'>
       <% @mood_items.each do |item| %>
         <% top_coord = item.top_coord.to_f %>
         <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f - 160}px; left: #{item.left_coord.to_f - 30}px; z-index: #{item.z_index}; transform: #{item.transform}" %>

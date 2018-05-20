@@ -10,6 +10,7 @@ class MoodsController < ApplicationController
     @mood = Mood.new
     @mood.name = params['name']
     @mood.description = params['description']
+    @mood.background = params['background']
     @mood.prompt_id = params['prompt_id'].to_i
     # # if session[:user_id]
     #   @mood.user_id = @user.id

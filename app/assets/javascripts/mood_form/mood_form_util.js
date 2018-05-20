@@ -27,7 +27,7 @@ var init_submit_form = function init_submit_form(){
       var moodItems = collectPositions();
       var promptId = $('.prompt')[0].id;
       var backgroundColor = $('#mood-container').css('backgroundColor');
-      var trueData = { items: {}, name: moodName, description: moodDescription, prompt_id: promptId };
+      var trueData = { items: {}, name: moodName, description: moodDescription, prompt_id: promptId, background: backgroundColor };
       for (i = 0; i < moodItems.length; i++) {
         trueData['items']['item' + i] = {
           item_name: moodItems[i].alt,
