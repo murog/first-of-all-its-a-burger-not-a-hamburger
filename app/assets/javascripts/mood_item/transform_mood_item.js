@@ -30,8 +30,45 @@ var init_transform_commands_handler = function init_transform_commands_handler()
       case 70:
         flip = flip === undefined || flip === 1 ? -1 : 1;
         break;
+      case 37:
+          // left
+        current = $('.selected').position().left;
+        $(".selected").css('left', current - 10);
+        event.preventDefault();
+        break;
+      case 38:
+        // up
+        current = $('.selected').position().top;
+        $(".selected").css('top', current - 10);
+        event.preventDefault();
+        break;
+      case 39:
+        // right
+        current = $('.selected').position().left;
+        $(".selected").css('left', current + 10);
+        event.preventDefault();
+        break;
+      case 40:
+        // down
+        current = $('.selected').position().top;
+        $(".selected").css('top', current + 10);
+        event.preventDefault();
+        break;
     }
-    $('.selected').css({ transform: 'rotate(' + degrees + 'deg)' + ' scale(' + scale + ',' + scale + ')' + ' scaleX(' + flip + ')' });
+
+    //event.preventDefault();
+
+    if(event.keyCode === 9){
+      // NOTE: COULD ALSO CYCLE THROUGH INSTEAD OF RANDOM WITH A GLOBAL VARIABLE
+      $('.selected').removeClass('selected');
+      const len = $('.draggable:not(:hidden)').length;
+      const random = Math.floor( Math.random() * len ) + 1;
+      $('.draggable:not(:hidden)').eq(random).addClass('selected');
+
+      // Change selected to the one after the currently selected
+    }else{
+      $('.selected').css({ transform: 'rotate(' + degrees + 'deg)' + ' scale(' + scale + ',' + scale + ')' + ' scaleX(' + flip + ')' });
+    }
   });
 }
 

@@ -26,7 +26,7 @@ var init_sidemenu = function init_sidemenu(){
 
   $(function () {
     $(".draggable").draggable();
-    //$(".draggable").first().addClass("selected");
+    $(".draggable").first().addClass("selected");
     $('.prompt').draggable();
 
     $( "#trashCover" ).droppable({
