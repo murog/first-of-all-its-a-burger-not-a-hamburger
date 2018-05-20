@@ -20,6 +20,8 @@ var init_transform_commands_handler = function init_transform_commands_handler()
     scale = transform.scale;
     flip = transform.scaleX;
 
+    var offset = $(".selected").offset();
+
     switch (event.keyCode) {
       case 82:
         degrees = degrees === undefined || degrees === 315 ? 0 : degrees + 45;
@@ -32,31 +34,25 @@ var init_transform_commands_handler = function init_transform_commands_handler()
         break;
       case 37:
           // left
-        current = $('.selected').position().left;
-        $(".selected").css('left', current - 10);
+        $(".selected").offset({ top: offset.top, left: offset.left - 10});
         event.preventDefault();
         break;
       case 38:
         // up
-        current = $('.selected').position().top;
-        $(".selected").css('top', current - 10);
+        $(".selected").offset({ top: offset.top - 10, left: offset.left});
         event.preventDefault();
         break;
       case 39:
         // right
-        current = $('.selected').position().left;
-        $(".selected").css('left', current + 10);
+        $(".selected").offset({ top: offset.top, left: offset.left + 10});
         event.preventDefault();
         break;
       case 40:
         // down
-        current = $('.selected').position().top;
-        $(".selected").css('top', current + 10);
+        $(".selected").offset({ top: offset.top + 10, left: offset.left});
         event.preventDefault();
         break;
     }
-
-    //event.preventDefault();
 
     if(event.keyCode === 9){
       // NOTE: COULD ALSO CYCLE THROUGH INSTEAD OF RANDOM WITH A GLOBAL VARIABLE
