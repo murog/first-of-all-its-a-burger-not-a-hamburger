@@ -31,7 +31,6 @@ var init_sidemenu = function init_sidemenu(){
 
     $( "#trashCover" ).droppable({
       drop: function( event, ui ) {
-        // Maybe make hidden again?
         $('.selected').remove();
 
         var otherItems = $('.hidden').first();

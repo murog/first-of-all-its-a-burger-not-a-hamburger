@@ -56,28 +56,56 @@ var setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
 //  GM- consider renaming function to collectAttributes?
 var collectPositions = function collectPositions() {
   var mood = $('#mood-container');
-  mood.top = 100;
-  mood.bottom = 530;
-  mood.left = 0;
-  mood.right = 430;
+
+  mood.top = mood[0].clientTop;
+  mood.bottom = mood[0].clientHeight;
+  mood.left = mood[0].clientLeft;
+  mood.right = mood[0].clientWidth;
+
   // GM - refers to items with draggable class
   var draggables = $('.draggable');
   var moodItems = [];
+
   for (i = 0; i < draggables.length; i++) {
+
     var item = draggables[i];
-    item.left = item.style.left;
-    var leftEnd = item.left.length - 2;
-    item.left = parseFloat(item.left.substring(0, leftEnd));
-    item.top = item.style.top;
-    var topEnd = item.top.length - 2;
-    item.top = parseFloat(item.top.substring(0, topEnd));
-    item.zStuff = parseFloat(item.style.zIndex);
-    item.transform = item.style.transform;
-    if (item.top <= mood.bottom && item.top >= mood.top && item.left <= mood.right) {
+    if(isOverlap($(item),mood)){
+      item.left = $(item).offset().left;
+      //var leftEnd = item.left.length - 2;
+      //item.left = parseFloat(item.left.substring(0, leftEnd));
+
+      item.top = $(item).offset().top;
+      //item.top = item.style.top;
+      //var topEnd = item.top.length - 2;
+      //item.top = parseFloat(item.top.substring(0, topEnd));
+
+      console.log("left then top");
+      console.log(item.left);
+      console.log(item.top);
+
+      item.zStuff = parseFloat(item.style.zIndex);
+      item.transform = item.style.transform;
       moodItems.push(draggables[i]);
     }
+
   }
   // console.log('there are ' + moodItems.length + ' items in the container');
   // console.log(moodItems);
   return moodItems;
 };
+
+function isOverlap(item,mood){
+
+  var offsetItem = item.offset(),
+  offsetMood = mood.offset(),
+  topItem = offsetItem.top,
+  topMood = offsetMood.top,
+  leftItem = offsetItem.left,
+  leftMood = offsetMood.left,
+  rightItem = leftItem + item.width(),
+  rightMood = leftMood + mood.width(),
+  bottomItem = topItem + item.height(),
+  bottomMood = topMood + mood.height();
+
+  return !(leftMood > rightItem || rightMood < leftItem || topMood > bottomItem || bottomMood < topItem);
+}

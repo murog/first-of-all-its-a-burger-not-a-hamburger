@@ -4,7 +4,7 @@
     <div id="mood-container-show" style='background-color: <%= @mood.background%>'>
       <% @mood_items.each do |item| %>
         <% top_coord = item.top_coord.to_f %>
-        <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f - 160}px; left: #{item.left_coord.to_f - 30}px; z-index: #{item.z_index}; transform: #{item.transform}" %>
+        <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f}px; left: #{item.left_coord.to_f}px; z-index: #{item.z_index}; transform: #{item.transform}" %>
       <% end %>
     </div>
   </article>
@@ -23,7 +23,7 @@
     <div id="mood-container-show">
       <% @second_mood_items.each do |item| %>
         <% top_coord = item.top_coord.to_f %>
-        <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f - 160}px; left: #{item.left_coord.to_f - 30}px; z-index: #{item.z_index}; transform: #{item.transform}" %>
+        <%= image_tag item.item.url, :style => "position: absolute; top: #{item.top_coord.to_f}px; left: #{item.left_coord.to_f}px; z-index: #{item.z_index}; transform: #{item.transform}" %>
       <% end %>
     </div>
   </article>
