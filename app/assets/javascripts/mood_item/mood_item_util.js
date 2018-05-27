@@ -56,11 +56,10 @@ var setZIndexByArrayIndex = function setZIndexByArrayIndex(array) {
 //  GM- consider renaming function to collectAttributes?
 var collectPositions = function collectPositions() {
   var mood = $('#mood-container');
-
-  mood.top = mood[0].clientTop;
-  mood.bottom = mood[0].clientHeight;
-  mood.left = mood[0].clientLeft;
-  mood.right = mood[0].clientWidth;
+  mood.top = mood.offset().top;
+  mood.bottom = mood.top + mood.height();
+  mood.left = mood.offset().left;
+  mood.right = mood.left + mood.width();
 
   // GM - refers to items with draggable class
   var draggables = $('.draggable');
@@ -70,14 +69,8 @@ var collectPositions = function collectPositions() {
 
     var item = draggables[i];
     if(isOverlap($(item),mood)){
-      item.left = $(item).offset().left;
-      //var leftEnd = item.left.length - 2;
-      //item.left = parseFloat(item.left.substring(0, leftEnd));
-
-      item.top = $(item).offset().top;
-      //item.top = item.style.top;
-      //var topEnd = item.top.length - 2;
-      //item.top = parseFloat(item.top.substring(0, topEnd));
+      item.left = $(item).offset().left - mood.left;
+      item.top = $(item).offset().top - mood.top;
 
       console.log("left then top");
       console.log(item.left);
