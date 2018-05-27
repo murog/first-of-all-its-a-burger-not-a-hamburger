@@ -1,7 +1,6 @@
 // Create Side-menu event handlers & listeners
 var init_sidemenu = function init_sidemenu(){
   $('#save').click(function () {
-    console.log($('#mood_form').offset().top);
     $('html').animate({
       scrollTop: $('#mood_form').offset().top
     }, 500);
@@ -28,6 +27,10 @@ var init_sidemenu = function init_sidemenu(){
     $(".draggable").draggable({ scroll: false } );
     $(".draggable").first().addClass("selected");
     $('.prompt').draggable( { scroll: false } );
+
+    $('.draggable').css({
+      transform:'scale(0.25)'
+    });
 
     $( "#trashCover" ).droppable({
       drop: function( event, ui ) {

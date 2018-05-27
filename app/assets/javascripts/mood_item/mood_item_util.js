@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // There were a lot of listners to events being set in application.js
 // Most listeners were there to make sure each mood had the correct classes
 // Put them all here so application.js is less cluttered
@@ -72,12 +74,8 @@ var collectPositions = function collectPositions() {
       item.top = $(item).offset().top - mood.top;
       item.zStuff = parseFloat(item.style.zIndex);
       item.transform = item.style.transform;
-      console.log("########");
-      console.log(item.left);
-      console.log(item.top);
       moodItems.push(item);
     }
-
   }
   // console.log('there are ' + moodItems.length + ' items in the container');
   // console.log(moodItems);

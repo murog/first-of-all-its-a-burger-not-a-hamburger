@@ -60,10 +60,7 @@ var init_transform_commands_handler = function init_transform_commands_handler()
       const len = $('.draggable:not(:hidden)').length;
       const random = Math.floor( Math.random() * len ) + 1;
       $('.draggable:not(:hidden)').eq(random).addClass('selected');
-
-      // Change selected to the one after the currently selected
     }else{
-      // If scaling, add the class transform-origin: top left;
       $('.selected').css({ transform: 'rotate(' + degrees + 'deg)' + ' scale(' + scale + ',' + scale + ')' + ' scaleX(' + flip + ')' });
     }
   });
