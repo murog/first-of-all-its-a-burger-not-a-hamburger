@@ -66,19 +66,16 @@ var collectPositions = function collectPositions() {
   var moodItems = [];
 
   for (i = 0; i < draggables.length; i++) {
-
     var item = draggables[i];
     if(isOverlap($(item),mood)){
       item.left = $(item).offset().left - mood.left;
       item.top = $(item).offset().top - mood.top;
-
-      console.log("left then top");
-      console.log(item.left);
-      console.log(item.top);
-
       item.zStuff = parseFloat(item.style.zIndex);
       item.transform = item.style.transform;
-      moodItems.push(draggables[i]);
+      console.log("########");
+      console.log(item.left);
+      console.log(item.top);
+      moodItems.push(item);
     }
 
   }

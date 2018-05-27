@@ -10,9 +10,9 @@ var init_transform_commands_handler = function init_transform_commands_handler()
 
     var transform = getTransform($('.selected'));
     if (transform === null) {
-      transform = { rotate: 0, scale: 1, scaleX: 1 };
+      transform = { rotate: 0, scale: 0.25, scaleX: 1 };
       rotate = 0;
-      scale = 1;
+      scale = 0.25;
       flip = 1;
     }
 
@@ -27,7 +27,7 @@ var init_transform_commands_handler = function init_transform_commands_handler()
         degrees = degrees === undefined || degrees === 315 ? 0 : degrees + 45;
         break;
       case 83:
-        scale = scale === undefined || scale === 3 ? scale = 1 : scale + 0.5;
+        scale = scale === undefined || scale === 1 ? scale = 0.25 : scale + 0.25;
         break;
       case 70:
         flip = flip === undefined || flip === 1 ? -1 : 1;
@@ -53,7 +53,7 @@ var init_transform_commands_handler = function init_transform_commands_handler()
         event.preventDefault();
         break;
     }
-
+    // tab
     if(event.keyCode === 9){
       // NOTE: COULD ALSO CYCLE THROUGH INSTEAD OF RANDOM WITH A GLOBAL VARIABLE
       $('.selected').removeClass('selected');
@@ -63,6 +63,7 @@ var init_transform_commands_handler = function init_transform_commands_handler()
 
       // Change selected to the one after the currently selected
     }else{
+      // If scaling, add the class transform-origin: top left;
       $('.selected').css({ transform: 'rotate(' + degrees + 'deg)' + ' scale(' + scale + ',' + scale + ')' + ' scaleX(' + flip + ')' });
     }
   });

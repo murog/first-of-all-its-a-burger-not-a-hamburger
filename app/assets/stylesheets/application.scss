@@ -39,6 +39,8 @@ h1, h2, h3, h4, h5 {
 .draggable {
   left: 480px;
   position: absolute;
+  transform: scale(0.25, 0.25);
+  transform-origin: top left;
 }
 
 .hidden {
