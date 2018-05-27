@@ -27,10 +27,7 @@ var init_sidemenu = function init_sidemenu(){
     $(".draggable").draggable({ scroll: false } );
     $(".draggable").first().addClass("selected");
     $('.prompt').draggable( { scroll: false } );
-
-    $('.draggable').css({
-      transform:'scale(0.25)'
-    });
+    $('.draggable').css({transform:'rotate(0deg) scale(0.25,0.25) scaleX(1)'});
 
     $( "#trashCover" ).droppable({
       drop: function( event, ui ) {
